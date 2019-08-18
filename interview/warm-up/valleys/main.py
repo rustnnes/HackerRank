@@ -6,24 +6,20 @@ import random
 import re
 import sys
 
-# Complete the sockMerchant function below.
-def sockMerchant(n, ar):
-  qty = 0
-  scks = ar
-  while len(scks) > 1:
-    p = scks[0]
-    for x in range(1, len(scks)):
-      if scks[x] == p:
-        qty += 1
-        del scks[x]
-        scks = scks[1 : len(scks)]
-        break
-      elif (x+1) == len(scks):
-        scks = scks[1 : len(scks)]
-  return qty
+# Complete the countingValleys function below.
+def countingValleys(n, s):
+    curr_sea_level = 0
+    prev_sea_level = 0
+    n_valleys = 0
+    for unit in s:
+        prev_sea_level = curr_sea_level
+        curr_sea_level += 1 if (unit == 'U') else -1
+        if prev_sea_level < 0 and curr_sea_level < 0:
+            n_valleys += 1
+    return n_valleys
 
-if __name__ == "__main__":
-  n = 9
-  ar = [10, 20, 20, 10, 10, 30, 50, 10, 20]
-  result = sockMerchant(n, ar)
-  print(result)
+if __name__ == '__main__':
+    n = 8
+    s = "UDDDUDUU"
+    result = countingValleys(n, s)
+    print(result)
